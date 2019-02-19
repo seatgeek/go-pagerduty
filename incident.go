@@ -132,6 +132,20 @@ func (c *Client) ManageIncidents(from string, incidents []Incident) error {
 	return e
 }
 
+func (c *Client) ChangeIncidentStatus(from, id, status string) error {
+	r := make(map[string][]interface{})
+	headers := make(map[string]string)
+	headers["From"] = from
+	payload := map[string]string{
+		"id":     id,
+		"type":   "incident_reference",
+		"status": status,
+	}
+	r["incidents"] = []interface{}{payload}
+	_, e := c.put("/incidents", r, &headers)
+	return e
+}
+
 // GetIncident shows detailed information about an incident.
 func (c *Client) GetIncident(id string) (*Incident, error) {
 	resp, err := c.get("/incidents/" + id)
