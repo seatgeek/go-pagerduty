@@ -175,10 +175,12 @@ func (c *Client) ListIncidentNotes(id string) ([]IncidentNote, error) {
 }
 
 // CreateIncidentNote creates a new note for the specified incident.
-func (c *Client) CreateIncidentNote(id string, note IncidentNote) error {
+func (c *Client) CreateIncidentNote(id string, from string, note IncidentNote) error {
 	data := make(map[string]IncidentNote)
+	headers := make(map[string]string)
+	headers["From"] = from
 	data["note"] = note
-	_, err := c.post("/incidents/"+id+"/notes", data, nil)
+	_, err := c.post("/incidents/"+id+"/notes", data, &headers)
 	return err
 }
 
