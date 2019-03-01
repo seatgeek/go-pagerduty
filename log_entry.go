@@ -32,8 +32,8 @@ type LogEntry struct {
 	Incident               Incident
 	Teams                  []Team
 	Contexts               []Context
-	AcknowledgementTimeout int `json:"acknowledgement_timeout"`
-	EventDetails           map[string]string
+	AcknowledgementTimeout int               `json:"acknowledgement_timeout"`
+	EventDetails           map[string]string `json:"event_details"`
 }
 
 // ListLogEntryResponse is the response data when calling the ListLogEntry API endpoint.
