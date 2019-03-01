@@ -237,11 +237,22 @@ func (c *Client) ListIncidentLogEntries(id string, o ListIncidentLogEntriesOptio
 // Alert is a list of all of the alerts that happened to an incident.
 type Alert struct {
 	APIObject
-	Service   APIObject `json:"service,omitempty"`
-	CreatedAt string    `json:"created_at,omitempty"`
-	Status    string    `json:"status,omitempty"`
-	AlertKey  string    `json:"alert_key,omitempty"`
-	Incident  APIObject `json:"incident,omitempty"`
+	Service              APIObject `json:"service,omitempty"`
+	CreatedAt            string    `json:"created_at,omitempty"`
+	Status               string    `json:"status,omitempty"`
+	AlertKey             string    `json:"alert_key,omitempty"`
+	Incident             APIObject `json:"incident,omitempty"`
+	Summary              string    `json:"summary"`
+	HtmlUrl              string    `json:"html_url"`
+	FirstTriggerLogEntry APIObject `json:"first_trigger_log_entry"`
+	Supressed            bool      `json:"supressed"`
+	Severity             string    `json:"severity"`
+	Body                 AlertBody `json:"body"`
+}
+
+type AlertBody struct {
+	Contexts []Context              `json:"contexts"`
+	Details  map[string]interface{} `json:"details"`
 }
 
 type ListAlertResponse struct {
