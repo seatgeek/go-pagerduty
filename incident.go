@@ -251,8 +251,8 @@ type Alert struct {
 }
 
 type AlertBody struct {
-	Contexts []Context              `json:"contexts"`
-	Details  map[string]interface{} `json:"details"`
+	Contexts []Context   `json:"contexts"`
+	Details  interface{} `json:"details"`
 }
 
 type ListAlertResponse struct {
